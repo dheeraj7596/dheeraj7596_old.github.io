@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Text Classification with Sparse Composite Document Vectors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/cayman.css">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Text Classification with Sparse Composite Document Vectors</h1>
+      <h2 class="project-tagline">A responsive theme for your project on GitHub Pages</h2>
+      <a href="" class="btn" target="_blank">Link to Paper</a>
+      <a href="https://github.com/dheeraj7596/SDV" class="btn" target="_blank">View on GitHub</a>      
+    </section>
+
+    <section class="main-content">
+       <h1>
+<a id="Text Classification with Sparse Composite Document Vectors" class="anchor" href="#Text-Classification-with-Sparse-Composite-Document-Vectors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="" target="_blank">Text Classification with Sparse Composite Document Vectors</a></h1>
+
+<p>Dheeraj Mekala<sup>*</sup>, Vivek Gupta<sup>*</sup>, Harish Karnick</p>
+
+<p><sup>*</sup>Equal contribution</p>
+
+      <h2>
+      <a id="The-Crux" class="anchor" href="#The-Crux" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Crux</h2>
+      <ul>
+      <li><p>Various machine learning algorithms are used to perform text classification. As machine learning algorithms don't understand textual data, they require text data to be represented as fixed dimension vector. </p></li>
+      <li><p>We modify the feature formation technique i.e. graded-weighted Bag of Word Vectors (gwBoWV) for faster and better composite document feature vector formation.</p></li>
+      <li><p>We propose a very simple feature construction algorithm which has potential to overcome many weaknesses in current distributional vector representations and other composite document representation techniques.</p></li>
+      <li><p>We demonstrate our method through experiments on multi-class classification on 20newsgroup dataset and multi-label text classification on Reuters-21578 dataset</p></li>
+      </ul>
+      <h2>
+      <a id="results-and-analysis" class="anchor" href="#results-and-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results and Analysis</h2>
+      <h2>
+      <a id="20news" class="anchor" href="#20news" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi-class classification on 20Newsgroup dataset</h2>
+      <ul>
+      <li>We evaluate performance using standard metrics like accuracy, macro-averaging precision, recall and macro-averaging F-measure for comparison.</li>
+      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models.</li>
+      <li>We demonstrate time comparision with gwBoWV, TWE-1 and space comparision with gwBoWV, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      </ul>
+
+      <h3>Performance Comparision</h3>
+      <table>
+      <thead>
+      <tr>
+      <th align="center">Models</th>
+      <th align="center">Accuracy(%)</th>
+      <th align="center">Precision(%)</th>
+      <th align="center">Recall(%)</th>
+      <th align="center">F_score(%)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td align="center">SDV</td>
+      <td align="center"><b>82.5</b></td>
+      <td align="center"><b>82.1</b></td>
+      <td align="center"><b>81.8</b></td>
+      <td align="center"><b>81.8</b></td>
+      </tr>
+      <tr>
+      <td align="center">gwBoWV</td>
+      <td align="center">81.6</td>
+      <td align="center">81.1</td>
+      <td align="center">81.1</td>
+      <td align="center">80.9</td>
+      </tr>
+      <tr>
+      <td align="center">TWE-1</td>
+      <td align="center">81.5</td>
+      <td align="center">81.2</td>
+      <td align="center">80.6</td>
+      <td align="center">80.6</td>
+      </tr>
+      <tr>
+      <td align="center">BOW</td>
+      <td align="center">79.7</td>
+      <td align="center">79.5</td>
+      <td align="center">79.0</td>
+      <td align="center">79.0</td>
+      </tr>
+      <tr>
+      <td align="center">TWE-2</td>
+      <td align="center">79.0</td>
+      <td align="center">78.6</td>
+      <td align="center">77.9</td>
+      <td align="center">77.9</td>
+      </tr>
+      <tr>
+      <td align="center">TWE-3</td>
+      <td align="center">77.4</td>
+      <td align="center">77.2</td>
+      <td align="center">76.2</td>
+      <td align="center">76.1</td>
+      </tr>
+      <tr>
+      <td align="center">PV-DBOW</td>
+      <td align="center">75.4</td>
+      <td align="center">74.9</td>
+      <td align="center">74.3</td>
+      <td align="center">74.3</td>
+      </tr>
+      <tr>
+      <td align="center">PV-DM</td>
+      <td align="center">72.4</td>
+      <td align="center">72.1</td>
+      <td align="center">71.5</td>
+      <td align="center">71.5</td>
+      </tr>
+      <tr>
+      <td align="center">AvgVec</td>
+      <td align="center">71.8</td>
+      <td align="center">71.2</td>
+      <td align="center">70.5</td>
+      <td align="center">70.0</td>
+      </tr>
+      </tbody>
+      </table>
+
+      <h3>Time Comparision</h3>
+      <table>
+      <thead>
+      <tr>
+      <th align="center">Time (sec)</th>
+      <th align="center">gwBoWV</th>
+      <th align="center">TWE-1</th>
+      <th align="center">SDV</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td align="center">Cluster formation time</td>
+      <td align="center">90</td>
+      <td align="center">660</td>
+      <td align="center"><b>90</b></td>
+      </tr>
+      <tr>
+      <td align="center">Document vector formation time</td>
+      <td align="center">1170</td>
+      <td align="center">180</td>
+      <td align="center"><b>60</b></td>
+      </tr>
+      <tr>
+      <td align="center">Total training time</td>
+      <td align="center">1320</td>
+      <td align="center">858</td>
+      <td align="center"><b>210</b></td>
+      </tr>
+      <tr>
+      <td align="center">Total prediction time</td>
+      <td align="center">780</td>
+      <td align="center">120</td>
+      <td align="center">42</td>
+      </tr>
+      </tbody>
+      </table>
+
+      <h3>Space Comparision</h3>
+      <table>
+      <thead>
+      <tr>
+      <th align="center">Space Occupied</th>
+      <th align="center">gwBoWV</th>
+      <th align="center">SDV</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td align="center">Document vectors</td>
+      <td align="center">1.1 GB</td>
+      <td align="center"><b>236 MB</b></td>
+      </tr>
+      </tbody>
+      </table>
+
+      <h2>
+      <a id="reuters" class="anchor" href="#reuters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi-label classification on Reuters-21578 dataset.
+      </h2>
+      <ul>
+      <li>We evaluate performance using <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">Precision@K</a>, <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">nDCG@K</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Coverage error</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Label ranking average precision score(LRAPS)</a>, weighted F-measure.
+      </li>
+      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words),  <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) and tfidf weighted average word-vector model (tfidf Avg Vec).</li>
+      </ul>
+
+      <h3>Performance Comparision</h3>
+      <table>
+      <thead>
+      <tr>
+      <th align="center">Models</th>
+      <th align="center">Prec@1</th>
+      <th align="center">Prec@5</th>
+      <th align="center">nDCG@5</th>
+      <th align="center">Coverage error</th>
+      <th align="center">LRAPS</th>
+      <th align="center">Weighted F_score</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td align="center">SDV</td>
+      <td align="center"><b>92.95</b></td>
+      <td align="center"><b>36.51</b></td>
+      <td align="center"><b>48.90</b></td>
+      <td align="center"><b>7.49</b></td>
+      <td align="center"><b>92.06</b></td>
+      <td align="center"><b>80.13</b></td>
+      </tr>
+      <tr>
+      <td align="center">TWE-1</td>
+      <td align="center">90.91</td>
+      <td align="center">35.49</td>
+      <td align="center">47.54</td>
+      <td align="center">9.03</td>
+      <td align="center">89.25</td>
+      <td align="center">74.76</td>
+      </tr>
+      <tr>
+      <td align="center">PV-DM</td>
+      <td align="center">87.54</td>
+      <td align="center">33.24</td>
+      <td align="center">44.21</td>
+      <td align="center">13.15</td>
+      <td align="center">86.21</td>
+      <td align="center">70.24</td>
+      </tr>
+      <tr>
+      <td align="center">PV-DBOW</td>
+      <td align="center">88.78</td>
+      <td align="center">34.51</td>
+      <td align="center">46.42</td>
+      <td align="center">11.28</td>
+      <td align="center">87.43</td>
+      <td align="center">73.68</td>
+      </tr>
+      <tr>
+      <td align="center">AvgVec</td>
+      <td align="center">89.09</td>
+      <td align="center">34.73</td>
+      <td align="center">46.48</td>
+      <td align="center">9.67</td>
+      <td align="center">87.28</td>
+      <td align="center">71.91</td>
+      </tr>
+      <tr>
+      <td align="center">tfidf AvgVec</td>
+      <td align="center">89.33</td>
+      <td align="center">35.04</td>
+      <td align="center">46.83</td>
+      <td align="center">9.42</td>
+      <td align="center">87.90</td>
+      <td align="center">71.97</td>
+      </tr>
+      </tbody>
+      </table>
+
+      <h2>
+      <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h2>
+      <ul>
+      <li><p></p></li>
+        <li><p></p></li>
+      <li><p></p></li>
+      </ul>      
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dheeraj7596/SDV">Text Classification with Sparse Composite Document Vectors</a> is maintained by <a href="https://github.com/dheeraj7596">dheeraj7596</a>.</span>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  </body>
+</html>
