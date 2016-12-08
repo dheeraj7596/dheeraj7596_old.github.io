@@ -29,9 +29,9 @@
       <a id="The-Crux" class="anchor" href="#The-Crux" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Crux</h2>
       <ul>
       <li><p>Various machine learning algorithms are used to perform text classification. As machine learning algorithms don't understand textual data, they require text data to be represented as fixed dimension vector. </p></li>
-      <li><p>We modify the feature formation technique i.e. graded-weighted Bag of Word Vectors (gwBoWV) for faster and better composite document feature vector formation.</p></li>
+      <li><p>We modify the feature formation technique i.e. <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">graded-weighted Bag of Word Vectors</a> (gwBoWV) for faster and better composite document feature vector formation.</p></li>
       <li><p>We propose a very simple feature construction algorithm which has potential to overcome many weaknesses in current distributional vector representations and other composite document representation techniques.</p></li>
-      <li><p>We demonstrate our method through experiments on multi-class classification on 20newsgroup dataset and multi-label text classification on Reuters-21578 dataset</p></li>
+      <li><p>We demonstrate effectiveness of our method through experiments on multi-class classification on 20newsgroup dataset and multi-label text classification on Reuters-21578 dataset</p></li>
       </ul>
       <h2>
       <a id="results-and-analysis" class="anchor" href="#results-and-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results and Analysis</h2>
@@ -39,8 +39,8 @@
       <a id="20news" class="anchor" href="#20news" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi-class classification on 20Newsgroup dataset</h2>
       <ul>
       <li>We evaluate performance using standard metrics like accuracy, macro-averaging precision, recall and macro-averaging F-measure for comparison.</li>
-      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models.</li>
-      <li>We demonstrate time comparision with gwBoWV, TWE-1 and space comparision with gwBoWV, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      <li>We demonstrate time comparision with gwBoWV, TWE-1 and space comparision with gwBoWV.</li>
       </ul>
 
       <h3>Performance Comparision</h3>
@@ -158,7 +158,7 @@
       </tr>
       </tbody>
       </table>
-
+      <p style="text-align:center;"><img src="https://cloud.githubusercontent.com/assets/24454690/21029628/b23f2d70-bdc0-11e6-80ee-b473be885c41.png" width="600px" height="400px"></p>
       <h3>Space Comparision</h3>
       <table>
       <thead>
@@ -176,12 +176,13 @@
       </tr>
       </tbody>
       </table>
+      <p style="text-align:center;"><img src="https://cloud.githubusercontent.com/assets/24454690/21029723/18587878-bdc1-11e6-86a5-3f1e7d28c285.png" width="600px" height="400px"></p>
 
       <h2>
       <a id="reuters" class="anchor" href="#reuters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi-label classification on Reuters-21578 dataset.
       </h2>
       <ul>
-      <li>We evaluate performance using <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">Precision@K</a>, <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">nDCG@K</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Coverage error</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Label ranking average precision score(LRAPS)</a>, weighted F-measure.
+      <li>We evaluate performance using standard metrics like <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">Precision@K</a>, <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">nDCG@K</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Coverage error</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Label ranking average precision score(LRAPS)</a>, weighted F-measure for comparision.
       </li>
       <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words),  <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) and tfidf weighted average word-vector model (tfidf Avg Vec).</li>
       </ul>
@@ -260,9 +261,8 @@
       <h2>
       <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h2>
       <ul>
-      <li><p></p></li>
-        <li><p></p></li>
-      <li><p></p></li>
+      <li><p>We modified gwBoWV and reduced overall feature vector computation time and space occupied by document vectors.</p></li>
+      <li><p>Our method (SDV) outperforms TWE, gwBoWV in performance and time by significant margin.</p></li>
       </ul>      
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/dheeraj7596/SDV">Text Classification with Sparse Composite Document Vectors</a> is maintained by <a href="https://github.com/dheeraj7596">dheeraj7596</a>.</span>
