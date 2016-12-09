@@ -184,7 +184,7 @@
       <ul>
       <li>We evaluate performance using standard metrics like <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">Precision@K</a>, <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">nDCG@K</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Coverage error</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Label ranking average precision score(LRAPS)</a>, weighted F-measure for comparision.
       </li>
-      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words),  <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) and tfidf weighted average word-vector model (tfidf Avg Vec).</li>
+      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words),  <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) and tfidf weighted average word-vector model (tfidf Avg Vec).</li>
       </ul>
 
       <h3>Performance Comparision</h3>
@@ -210,6 +210,16 @@
       <td align="center"><b>92.06</b></td>
       <td align="center"><b>80.13</b></td>
       </tr>
+      <tr>
+      <td align="center">gwBoWV</td>
+      <td align="center">92.9</td>
+      <td align="center">36.14</td>
+      <td align="center">48.55</td>
+      <td align="center">8.16</td>
+      <td align="center">91.46</td>
+      <td align="center">79.16</td>
+      </tr>
+      
       <tr>
       <td align="center">TWE-1</td>
       <td align="center">90.91</td>
