@@ -29,9 +29,31 @@
       <a id="The-Crux" class="anchor" href="#The-Crux" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Crux</h2>
       <ul>
       <li><p>Various machine learning algorithms are used to perform text classification. As machine learning algorithms don't understand textual data, they require text data to be represented as fixed dimension vector. </p></li>
-      <li><p>We modify the feature formation technique i.e. <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">graded-weighted Bag of Word Vectors</a> (gwBoWV) for faster and better composite document feature vector formation.</p></li>
+      <li><p>We modify the feature formation technique i.e. <a href="http://aclweb.org/anthology/C16-1052" target="_blank">graded-weighted Bag of Word Vectors</a> (gwBoWV) for faster and better composite document feature vector formation.</p></li>
       <li><p>We propose a very simple feature construction algorithm which has potential to overcome many weaknesses in current distributional vector representations and other composite document representation techniques.</p></li>
       <li><p>We demonstrate effectiveness of our method through experiments on multi-class classification on 20newsgroup dataset and multi-label text classification on Reuters-21578 dataset</p></li>
+      </ul>
+      <h2>
+      <a id="Theory" class="anchor" href="#Theory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Theory</h2>
+      There are 2 steps during building SDV.
+      <ul>
+      <li><p>Precomputation of word-topics vectors.</p></li>
+      <li><p>Build sparse document vectors using word-topics vectors.</p></li>
+      </ul>
+      <h3>Precomputation of word-topics vector</h3>
+      <p style="text-align:center;"><img src="https://cloud.githubusercontent.com/assets/24454690/21154538/b7d4150c-c194-11e6-81a7-aef66ba70d93.png" width="780px" height="400px"></p>
+      <ul>
+      <li><p>Word vectors for all words in vocabulary are clustered into K semantic clusters using soft clustering algorithms (e.g. GMM), thus each word belongs to every cluster with some probability.</p></li>
+      <li><p>For each word w<sub>i</sub>, K word-cluster vectors (wcv<sub>ik</sub>) are created by multiplying word vector with the probability of word belonging to each cluster.</p></li>
+      <li><p>Concatenate all word-cluster vectors and weight it with idf of w<sub>i</sub> to form a word-topics vector (wtv<sub>i</sub>)</p></li>
+      <li><p>This precomputation leads to significant reduction in feature formation time.</p></li>
+      </ul>
+      <h3>Building sparse document vectors using word-topics vectors</h3>
+      <p style="text-align:center;"><img src="https://cloud.githubusercontent.com/assets/24454690/21152699/75e898fe-c18d-11e6-8f75-d673b43ebd96.png" width="780px" height="400px"></p>
+      <ul>
+      <li><p>Basic preprocessing like stop words removal is done on documents.</p></li>
+      <li><p>For each word w<sub>i</sub> appearing in the preprocessed document D<sub>j</sub>, sum word-topics vector (wtv<sub>i</sub>) to obtain document vector dv<sub>D<sub>j</sub></sub> .</p></li>
+      <li><p>Make document vector dv<sub>D<sub>j</sub></sub> sparse by zeroing attribute feature values which are less than 5% of average attribute feature values range resulting in SDV<sub>D<sub>j</sub></sub> .</p></li>
       </ul>
       <h2>
       <a id="results-and-analysis" class="anchor" href="#results-and-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results and Analysis</h2>
@@ -39,10 +61,9 @@
       <a id="20news" class="anchor" href="#20news" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi-class classification on 20Newsgroup dataset</h2>
       <ul>
       <li>We evaluate performance using standard metrics like accuracy, macro-averaging precision, recall and macro-averaging F-measure for comparison.</li>
-      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="http://aclweb.org/anthology/C16-1052" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
       <li>We demonstrate time comparision with gwBoWV, TWE-1 and space comparision with gwBoWV.</li>
       </ul>
-
       <h3>Performance Comparision</h3>
       <table>
       <thead>
@@ -184,7 +205,7 @@
       <ul>
       <li>We evaluate performance using standard metrics like <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">Precision@K</a>, <a href="http://www.cse.iitd.ernet.in/~yashoteja/pubs/jain16.pdf" target="_blank">nDCG@K</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Coverage error</a>, <a href="http://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank">Label ranking average precision score(LRAPS)</a>, weighted F-measure for comparision.
       </li>
-      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words),  <a href="https://arxiv.org/pdf/1606.06083v2.pdf" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) and tfidf weighted average word-vector model (tfidf Avg Vec).</li>
+      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words),  <a href="http://aclweb.org/anthology/C16-1052" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) and tfidf weighted average word-vector model (tfidf Avg Vec).</li>
       </ul>
 
       <h3>Performance Comparision</h3>
