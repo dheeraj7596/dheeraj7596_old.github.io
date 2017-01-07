@@ -31,7 +31,7 @@
       <li><p>Various machine learning algorithms are used to perform text classification. As machine learning algorithms don't understand textual data, they require text data to be represented as fixed dimension vector. </p></li>
       <li><p>We modify the feature formation technique i.e. <a href="http://aclweb.org/anthology/C16-1052" target="_blank">graded-weighted Bag of Word Vectors</a> (gwBoWV) for faster and better composite document feature vector formation.</p></li>
       <li><p>We propose a very simple feature construction algorithm which has potential to overcome many weaknesses in current distributional vector representations and other composite document representation techniques.</p></li>
-      <li><p>We demonstrate effectiveness of our method through experiments on multi-class classification on 20newsgroup dataset and multi-label text classification on Reuters-21578 dataset</p></li>
+      <li><p>We demonstrate effectiveness of our method through experiments on multi-class classification on 20newsgroup dataset and multi-label text classification on Reuters-21578 dataset.</p></li>
       </ul>
       <h2>
       <a id="Theory" class="anchor" href="#Theory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Theory</h2>
@@ -49,7 +49,7 @@
       <li><p>This precomputation leads to significant reduction in feature formation time.</p></li>
       </ul>
       <h3>Building sparse document vectors using word-topics vectors</h3>
-      <p style="text-align:center;"><img src="https://cloud.githubusercontent.com/assets/24454690/21263040/8c12240e-c3ba-11e6-9558-7566541f3ca3.png" width="780px" height="400px"></p>
+      <p style="text-align:center;"><img src="https://cloud.githubusercontent.com/assets/24454690/21744514/2953d954-d53d-11e6-9b0a-d796ca242c66.png" width="780px" height="400px"></p>
       <ul>
       <li><p>Basic preprocessing like stop words removal is done on documents.</p></li>
       <li><p>For each word w<sub>i</sub> appearing in the preprocessed document D<sub>j</sub>, sum word-topics vector (wtv<sub>i</sub>) to obtain document vector dv<sub>D<sub>j</sub></sub> .</p></li>
@@ -61,7 +61,8 @@
       <a id="20news" class="anchor" href="#20news" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi-class classification on 20Newsgroup dataset</h2>
       <ul>
       <li>We evaluate performance using standard metrics like accuracy, macro-averaging precision, recall and macro-averaging F-measure for comparison.</li>
-      <li>We compare our performance with <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="http://aclweb.org/anthology/C16-1052" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      <li>We compare our performance with <a href="http://ijcai.org/Proceedings/15/Papers/185.pdf" target="_blank">NTSG</a>, <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="http://aclweb.org/anthology/C16-1052" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      <li>We perform significantly better than current state-of-art <a href="http://ijcai.org/Proceedings/15/Papers/185.pdf" target="_blank">NTSG</a> on 20newsgroup dataset.</li>
       <li>We demonstrate time comparision with gwBoWV, TWE-1 and space comparision with gwBoWV.</li>
       </ul>
       <h3>Performance Comparision</h3>
@@ -77,18 +78,53 @@
       </thead>
       <tbody>
       <tr>
-      <td align="center">SDV</td>
-      <td align="center"><b>82.6</b></td>
-      <td align="center"><b>82.1</b></td>
-      <td align="center"><b>81.8</b></td>
-      <td align="center"><b>81.8</b></td>
+      <td align="center">SDV(SGNS)</td>
+      <td align="center"><b>84.6</b></td>
+      <td align="center"><b>84.1</b></td>
+      <td align="center"><b>83.7</b></td>
+      <td align="center"><b>83.8</b></td>
       </tr>
       <tr>
-      <td align="center">gwBoWV</td>
+      <td align="center">gwBoWV(SGNS)</td>
+      <td align="center">83.8</td>
+      <td align="center">83.4</td>
+      <td align="center">82.9</td>
+      <td align="center">82.9</td>
+      </tr>
+      <tr>
+      <td align="center">SDV(CBOW)</td>
+      <td align="center">82.6</td>
+      <td align="center">82.1</td>
+      <td align="center">81.8</td>
+      <td align="center">81.8</td>
+      </tr>
+      <tr>
+      <td align="center">gwBoWV(CBOW)</td>
       <td align="center">81.6</td>
       <td align="center">81.1</td>
       <td align="center">81.1</td>
       <td align="center">80.9</td>
+      </tr>
+      <tr>
+      <td align="center">NTSG-1</td>
+      <td align="center">82.6</td>
+      <td align="center">82.5</td>
+      <td align="center">81.9</td>
+      <td align="center">81.2</td>
+      </tr>
+      <tr>
+      <td align="center">NTSG-2</td>
+      <td align="center">82.5</td>
+      <td align="center">83.7</td>
+      <td align="center">82.8</td>
+      <td align="center">82.4</td>
+      </tr>
+      <tr>
+      <td align="center">NTSG-3</td>
+      <td align="center">81.9</td>
+      <td align="center">83.0</td>
+      <td align="center">81.7</td>
+      <td align="center">81.1</td>
       </tr>
       <tr>
       <td align="center">TWE-1</td>
@@ -223,16 +259,34 @@
       </thead>
       <tbody>
       <tr>
-      <td align="center">SDV</td>
-      <td align="center"><b>93.0</b></td>
-      <td align="center"><b>36.48</b></td>
-      <td align="center"><b>48.90</b></td>
-      <td align="center"><b>7.49</b></td>
-      <td align="center"><b>92.06</b></td>
-      <td align="center"><b>80.13</b></td>
+      <td align="center">SDV(SGNS)</td>
+      <td align="center"><b>94.20</b></td>
+      <td align="center"><b>36.98</b></td>
+      <td align="center"><b>49.55</b></td>
+      <td align="center"><b>6.48</b></td>
+      <td align="center"><b>93.30</b></td>
+      <td align="center"><b>81.75</b></td>
       </tr>
       <tr>
-      <td align="center">gwBoWV</td>
+      <td align="center">gwBoWV(SGNS)</td>
+      <td align="center">93.76</td>
+      <td align="center">36.70</td>
+      <td align="center">49.23</td>
+      <td align="center">7.56</td>
+      <td align="center">92.70</td>
+      <td align="center">81.07</td>
+      </tr>
+      <tr>
+      <td align="center">SDV(CBOW)</td>
+      <td align="center">93.0</td>
+      <td align="center">36.48</td>
+      <td align="center">48.90</td>
+      <td align="center">7.49</td>
+      <td align="center">92.06</td>
+      <td align="center">80.13</td>
+      </tr>
+      <tr>
+      <td align="center">gwBoWV(CBOW)</td>
       <td align="center">92.9</td>
       <td align="center">36.14</td>
       <td align="center">48.55</td>
@@ -240,7 +294,6 @@
       <td align="center">91.46</td>
       <td align="center">79.16</td>
       </tr>
-      
       <tr>
       <td align="center">TWE-1</td>
       <td align="center">90.91</td>
