@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Text Classification with Sparse Composite Document Vectors</title>
+    <title>SCDV : Sparse Composite Document Vectors using soft clustering over distributional representations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link rel="stylesheet" href="css/normalize.css">
@@ -11,15 +11,15 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Text Classification with Sparse Composite Document Vectors</h1>
+      <h1 class="project-name">SCDV : Sparse Composite Document Vectors using soft clustering over distributional representations</h1>
       <!-- <h2 class="project-tagline">A responsive theme for your project on GitHub Pages</h2> -->
-      <a href="https://arxiv.org/pdf/1612.06778v2.pdf" class="btn" target="_blank">Link to Paper</a>
+      <a href="https://arxiv.org/pdf/1612.06778.pdf" class="btn" target="_blank">Link to Paper</a>
       <a href="https://github.com/dheeraj7596/SDV" class="btn" target="_blank">View on GitHub</a>      
     </section>
 
     <section class="main-content">
        <h1>
-<a id="Text Classification with Sparse Composite Document Vectors" class="anchor" href="#Text-Classification-with-Sparse-Composite-Document-Vectors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="" target="_blank">Text Classification with Sparse Composite Document Vectors</a></h1>
+<a id="Text Classification with Sparse Composite Document Vectors" class="anchor" href="#Text-Classification-with-Sparse-Composite-Document-Vectors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="" target="_blank">Text Classification with Sparse Composite Document Vectors (SCDV)</a></h1>
 
 <!-- <p>Dheeraj Mekala<sup>*</sup>, Vivek Gupta<sup>*</sup>, Harish Karnick</p>
 
@@ -35,7 +35,7 @@
       </ul>
       <h2>
       <a id="Theory" class="anchor" href="#Theory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Theory</h2>
-      There are 2 steps during building SDV.
+      There are 2 steps during building SCDV.
       <ul>
       <li><p>Precomputation of word-topics vectors.</p></li>
       <li><p>Build sparse document vectors using word-topics vectors.</p></li>
@@ -53,7 +53,7 @@
       <ul>
       <li><p>Basic preprocessing like stop words removal is done on documents.</p></li>
       <li><p>For each word w<sub>i</sub> appearing in the preprocessed document D<sub>j</sub>, sum word-topics vector (wtv<sub>i</sub>) to obtain document vector dv<sub>D<sub>j</sub></sub> .</p></li>
-      <li><p>Make document vector dv<sub>D<sub>j</sub></sub> sparse by zeroing attribute feature values which are less than 5% of average attribute feature values range resulting in SDV<sub>D<sub>j</sub></sub> .</p></li>
+      <li><p>Make document vector dv<sub>D<sub>j</sub></sub> sparse by zeroing attribute feature values which are less than 5% of average attribute feature values range resulting in SCDV<sub>D<sub>j</sub></sub> .</p></li>
       </ul>
       <h2>
       <a id="results-and-analysis" class="anchor" href="#results-and-analysis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Results and Analysis</h2>
@@ -61,7 +61,8 @@
       <a id="20news" class="anchor" href="#20news" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi-class classification on 20Newsgroup dataset</h2>
       <ul>
       <li>We evaluate performance using standard metrics like accuracy, macro-averaging precision, recall and macro-averaging F-measure for comparison.</li>
-      <li>We compare our performance with <a href="http://ijcai.org/Proceedings/15/Papers/185.pdf" target="_blank">NTSG</a>, <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="http://aclweb.org/anthology/C16-1052" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      <li>We compare our performance with <a href="http://ijcai.org/Proceedings/15/Papers/185.pdf" target="_blank">NTSG</a>, <a href="http://www.jmlr.org/proceedings/papers/v32/le14.pdf" target="_blank">Paragraph vector</a> models (distributed memory and distributed bag of words), <a href="http://aclweb.org/anthology/C16-1052" target="_blank">gwBoWV</a>, <a href="https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9314/9535" target="_blank">TWE</a> (TWE-1, TWE-2, TWE-3) models, <a href="http://www.sciencedirect.com/science/article/pii/S0925231217308962" target="_blank">weighted Bag of Concepts</a>, Average word-vector model (AvgVec) where we build document vector by averaging all word embedding vectors in a document.</li>
+      <li>We also compare our results with reported results of other topic modeling based document embedding methods like <a href="http://www.jmlr.org/proceedings/papers/v63/Fu60.pdf" target="_blank">WTM</a>, <a>w2v - LDA</a>, <a href="https://www.aclweb.org/anthology/P/P16/P16-1063.pdf" target="_blank">TV + MeanWV</a>, <a href="https://arxiv.org/abs/1702.07117" target="_blank">LTSG</a>, <a href="http://www.aclweb.org/old_anthology/P/P15/P15-1077.pdf" target="_blank">Gaussian-LDA</a>, <a href="http://ieeexplore.ieee.org/abstract/document/7451564/" target="_blank">Topic2Vec</a>, <a href="https://www.aclweb.org/anthology/C/C16/C16-1015.pdf" target="_blank">MvTM</a>.</li>
       <li>We perform significantly better than current state-of-art <a href="http://ijcai.org/Proceedings/15/Papers/185.pdf" target="_blank">NTSG</a> on 20newsgroup dataset.</li>
       <li>We demonstrate time comparision with gwBoWV, TWE-1 and space comparision with gwBoWV.</li>
       </ul>
@@ -78,32 +79,11 @@
       </thead>
       <tbody>
       <tr>
-      <td align="center">SDV(SGNS)</td>
+      <td align="center">SCDV</td>
       <td align="center"><b>84.6</b></td>
-      <td align="center"><b>84.1</b></td>
-      <td align="center"><b>83.7</b></td>
-      <td align="center"><b>83.8</b></td>
-      </tr>
-      <tr>
-      <td align="center">gwBoWV(SGNS)</td>
-      <td align="center">83.8</td>
-      <td align="center">83.4</td>
-      <td align="center">82.9</td>
-      <td align="center">82.9</td>
-      </tr>
-      <tr>
-      <td align="center">SDV(CBOW)</td>
-      <td align="center">82.6</td>
-      <td align="center">82.1</td>
-      <td align="center">81.8</td>
-      <td align="center">81.8</td>
-      </tr>
-      <tr>
-      <td align="center">gwBoWV(CBOW)</td>
-      <td align="center">81.6</td>
-      <td align="center">81.1</td>
-      <td align="center">81.1</td>
-      <td align="center">80.9</td>
+      <td align="center"><b>84.6</b></td>
+      <td align="center"><b>84.5</b></td>
+      <td align="center"><b>84.6</b></td>
       </tr>
       <tr>
       <td align="center">NTSG-1</td>
@@ -127,6 +107,20 @@
       <td align="center">81.1</td>
       </tr>
       <tr>
+      <td align="center">gwBoWV</td>
+      <td align="center">81.6</td>
+      <td align="center">81.1</td>
+      <td align="center">81.1</td>
+      <td align="center">80.9</td>
+      </tr>
+      <tr>
+      <td align="center">LTSG</td>
+      <td align="center">82.8</td>
+      <td align="center">82.4</td>
+      <td align="center">81.8</td>
+      <td align="center">81.8</td>
+      </tr>
+      <tr>
       <td align="center">TWE-1</td>
       <td align="center">81.5</td>
       <td align="center">81.2</td>
@@ -134,11 +128,46 @@
       <td align="center">80.6</td>
       </tr>
       <tr>
+      <td align="center">WTM</td>
+      <td align="center">80.9</td>
+      <td align="center">80.3</td>
+      <td align="center">80.3</td>
+      <td align="center">80.0</td>
+      </tr>
+      <tr>
       <td align="center">BOW</td>
       <td align="center">79.7</td>
       <td align="center">79.5</td>
       <td align="center">79.0</td>
       <td align="center">79.0</td>
+      </tr>
+      <tr>
+      <td align="center">w2v-LDA</td>
+      <td align="center">77.7</td>
+      <td align="center">77.4</td>
+      <td align="center">77.2</td>
+      <td align="center">76.9</td>
+      </tr>
+      <tr>
+      <td align="center">TV+MeanWV</td>
+      <td align="center">72.2</td>
+      <td align="center">71.8</td>
+      <td align="center">71.5</td>
+      <td align="center">71.6</td>
+      </tr>
+      <tr>
+      <td align="center">MvTM</td>
+      <td align="center">72.2</td>
+      <td align="center">71.8</td>
+      <td align="center">71.5</td>
+      <td align="center">71.6</td>
+      </tr>
+      <tr>
+      <td align="center">lda2vec</td>
+      <td align="center">81.3</td>
+      <td align="center">81.4</td>
+      <td align="center">80.4</td>
+      <td align="center">80.5</td>
       </tr>
       <tr>
       <td align="center">TWE-2</td>
@@ -153,6 +182,20 @@
       <td align="center">77.2</td>
       <td align="center">76.2</td>
       <td align="center">76.1</td>
+      </tr>
+      <tr>
+      <td align="center">weight-AvgVec</td>
+      <td align="center">81.9</td>
+      <td align="center">81.7</td>
+      <td align="center">81.9</td>
+      <td align="center">81.7</td>
+      </tr>
+      <tr>
+      <td align="center">weight-BOC</td>
+      <td align="center">71.8</td>
+      <td align="center">71.3</td>
+      <td align="center">71.8</td>
+      <td align="center">71.4</td>
       </tr>
       <tr>
       <td align="center">PV-DBOW</td>
@@ -185,7 +228,7 @@
       <th align="center">Time (sec)</th>
       <th align="center">gwBoWV</th>
       <th align="center">TWE-1</th>
-      <th align="center">SDV</th>
+      <th align="center">SCDV</th>
       </tr>
       </thead>
       <tbody>
@@ -222,7 +265,7 @@
       <tr>
       <th align="center">Space Occupied</th>
       <th align="center">gwBoWV</th>
-      <th align="center">SDV</th>
+      <th align="center">SCDV</th>
       </tr>
       </thead>
       <tbody>
@@ -259,7 +302,7 @@
       </thead>
       <tbody>
       <tr>
-      <td align="center">SDV(SGNS)</td>
+      <td align="center">SCDV</td>
       <td align="center"><b>94.20</b></td>
       <td align="center"><b>36.98</b></td>
       <td align="center"><b>49.55</b></td>
@@ -268,25 +311,7 @@
       <td align="center"><b>81.75</b></td>
       </tr>
       <tr>
-      <td align="center">gwBoWV(SGNS)</td>
-      <td align="center">93.76</td>
-      <td align="center">36.70</td>
-      <td align="center">49.23</td>
-      <td align="center">7.56</td>
-      <td align="center">92.70</td>
-      <td align="center">81.07</td>
-      </tr>
-      <tr>
-      <td align="center">SDV(CBOW)</td>
-      <td align="center">93.0</td>
-      <td align="center">36.48</td>
-      <td align="center">48.90</td>
-      <td align="center">7.49</td>
-      <td align="center">92.06</td>
-      <td align="center">80.13</td>
-      </tr>
-      <tr>
-      <td align="center">gwBoWV(CBOW)</td>
+      <td align="center">gwBoWV</td>
       <td align="center">92.9</td>
       <td align="center">36.14</td>
       <td align="center">48.55</td>
@@ -346,7 +371,7 @@
       <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Conclusion</h2>
       <ul>
       <li><p>We modified gwBoWV and reduced overall feature vector computation time and space occupied by document vectors.</p></li>
-      <li><p>Our method (SDV) outperforms TWE, gwBoWV both in performance and time complexity by significant margin.</p></li>
+      <li><p>Our method (SCDV) outperforms TWE, gwBoWV both in performance and time complexity by significant margin.</p></li>
       </ul>      
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/dheeraj7596/SDV">Text Classification with Sparse Composite Document Vectors</a> is maintained by <a href="https://github.com/dheeraj7596">dheeraj7596</a>.</span>
