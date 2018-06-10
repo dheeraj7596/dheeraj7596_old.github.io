@@ -1,5 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-06-10T13:00:07+05:30</updated><id>http://localhost:4000/</id><title type="html">Dheeraj Mekala</title><subtitle>Data Scientist at Sprinklr</subtitle><entry><title type="html">You’re up and running!</title><link href="http://localhost:4000/Hello-World/" rel="alternate" type="text/html" title="You're up and running!" /><published>2014-03-03T00:00:00+05:30</published><updated>2014-03-03T00:00:00+05:30</updated><id>http://localhost:4000/Hello-World</id><content type="html" xml:base="http://localhost:4000/Hello-World/">&lt;p&gt;Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-06-10T15:46:53+05:30</updated><id>http://localhost:4000/</id><title type="html">Dheeraj Mekala</title><subtitle>Data Scientist at Sprinklr</subtitle><entry><title type="html">Gradient Descent and its optimization algorithms</title><link href="http://localhost:4000/Gradient_Descent/" rel="alternate" type="text/html" title="Gradient Descent and its optimization algorithms" /><published>2018-06-10T00:00:00+05:30</published><updated>2018-06-10T00:00:00+05:30</updated><id>http://localhost:4000/Gradient_Descent</id><content type="html" xml:base="http://localhost:4000/Gradient_Descent/">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Gradient_descent&quot;&gt;Gradient Descent &lt;/a&gt; is one of the most used and popular algorithms to perform an optimization. This blog post aims to provide intuitions regarding gradient descent, its challenges and some of its optimization algorithms.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/config.png&quot; alt=&quot;_config.yml&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The basic intuition behind gradient descent can be understood by the following example: Suppose a mountaineer is on the top of a mountain and has to reach the lowest point of the mountain. Assuming he can’t estimate where the path leads to,   what approach should he take to reach the bottom? The best way is to observe the ground and take the path which descends the most. If this path is followed, he will most likely end up at the lowest point. Graphically:
+&lt;img src=&quot;https://raw.githubusercontent.com/dheeraj7596/dheeraj7596.github.io/master/images/gradient_descent.png&quot; alt=&quot;Gradient Descent&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the &lt;a href=&quot;https://github.com/barryclark/jekyll-now&quot;&gt;Jekyll Now repository&lt;/a&gt; on GitHub.&lt;/p&gt;</content><author><name></name></author><summary type="html">Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).</summary></entry></feed>
+&lt;p&gt;In mathematical terms, gradient descent is a way to minimise an objective function &lt;script type=&quot;math/tex&quot;&gt;R(x)&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J(\theta)&lt;/script&gt;
+
+&lt;p&gt;, where \theta are model’s parameters.
+Any layer of a neural network can be considered as an Affine Transformation followed by application of a non linear function. A vector is received as input and is multiplied with a matrix to produce an output , to which a bias vector may be added before passing the result through an activation function such as sigmoid.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Input = x \quad Output = f(Wx+b)&lt;/script&gt;
+
+&lt;p&gt;Consider a neural network with a single hidden layer like this one. It has no bias units. We derive forward and backward pass equations in their matrix form.
+&lt;img src=&quot;https://raw.githubusercontent.com/sudeepraja/sudeepraja.github.io/master/images/neuron.PNG&quot; alt=&quot;Neural Network&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The forward propagation equations are as follows:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mbox{Input} = x_0\\
+\mbox{Hidden Layer1 output} = x_1 = f_1(W_1x_0)\\
+\mbox{Hidden Layer2 output} = x_2 = f_2(W_2x_1)\\
+\mbox{Output} = x_3 = f_3(W_3x_2)&lt;/script&gt;
+
+&lt;p&gt;To train this neural network, you could either use Batch gradient descent or &lt;a href=&quot;https://en.wikipedia.org/wiki/Stochastic_gradient_descent&quot;&gt;Stochastic gradient descent&lt;/a&gt;. Stochastic gradient descent uses a single instance of data to perform weight updates, whereas the Batch gradient descent uses a a complete batch of data.&lt;/p&gt;
+
+&lt;p&gt;For simplicity lets assume this is a multiple regression problem.&lt;/p&gt;
+
+&lt;p&gt;Stochastic update loss function: &lt;script type=&quot;math/tex&quot;&gt;E=\frac{1}{2}\|z-t\|_2^2&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Batch update loss function: &lt;script type=&quot;math/tex&quot;&gt;E=\frac{1}{2}\sum_{i\in Batch}\|z_i-t_i\|_2^2&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Here &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; is the ground truth for that instance.&lt;/p&gt;
+
+&lt;p&gt;We will only consider the stochastic update loss function. All the results hold for the batch version as well.&lt;/p&gt;
+
+&lt;p&gt;Let us look at the loss function from a different perspective. Given an input &lt;script type=&quot;math/tex&quot;&gt;x_0&lt;/script&gt;,  output &lt;script type=&quot;math/tex&quot;&gt;x_3&lt;/script&gt; is determined by &lt;script type=&quot;math/tex&quot;&gt;W_1,W_2&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;W_3&lt;/script&gt;. So the only tuneable parameters in &lt;script type=&quot;math/tex&quot;&gt;E&lt;/script&gt; are &lt;script type=&quot;math/tex&quot;&gt;W_1,W_2&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;W_3&lt;/script&gt;. To reduce the value of the error function, we have to change these weights in the negative direction of the gradient of the loss function with respect to these weights.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;w = w - \alpha_w \frac{\partial E}{\partial w} \quad \quad \mbox{for all the weights } w&lt;/script&gt;
+
+&lt;p&gt;Here &lt;script type=&quot;math/tex&quot;&gt;\alpha_w&lt;/script&gt; is a scalar for this particular weight, called the learning rate. Its value is decided by the optimization technique used. I highly recommend reading &lt;a href=&quot;https://sebastianruder.com/optimizing-gradient-descent/&quot;&gt;An overview of gradient descent optimization algorithms&lt;/a&gt; for more information about various gradient decent techniques and learning rates.&lt;/p&gt;
+
+&lt;p&gt;Backpropagation equations can be derived by repeatedly applying the chain rule. First we derive these for the weights in &lt;script type=&quot;math/tex&quot;&gt;W_3&lt;/script&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_3} &amp;= (x_3-t)\frac{\partial x_3}{\partial W_3} \\
+&amp;=[(x_3-t)\circ f_3'(W_3x_2)]\frac{\partial W_3x_2}{\partial W_3}\\
+&amp;=[(x_3-t)\circ f_3'(W_3x_2)]x_2^T\\
+\mbox{Let }\delta_3 &amp;= (x_3-t)\circ f_3'(W_3x_2)\\
+\frac{\partial E}{\partial W_3} &amp;=\delta_3x_2^T
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Here &lt;script type=&quot;math/tex&quot;&gt;\circ&lt;/script&gt; is the Hadamard product. Lets sanity check this by looking at the dimensionalities. &lt;script type=&quot;math/tex&quot;&gt;\frac{\partial E}{\partial W_3}&lt;/script&gt; must have the same dimensions as &lt;script type=&quot;math/tex&quot;&gt;W_3&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;W_3&lt;/script&gt;’s dimensions are &lt;script type=&quot;math/tex&quot;&gt;2 \times 3&lt;/script&gt;. Dimensions of &lt;script type=&quot;math/tex&quot;&gt;(x_3-t)&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;2 \times 1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f_3'(W_3x_2)&lt;/script&gt; is also &lt;script type=&quot;math/tex&quot;&gt;2 \times 1&lt;/script&gt;, so &lt;script type=&quot;math/tex&quot;&gt;\delta_3&lt;/script&gt; is also &lt;script type=&quot;math/tex&quot;&gt;2 \times 1&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;3 \times 1&lt;/script&gt;, so dimensions of &lt;script type=&quot;math/tex&quot;&gt;\delta_3x_2^T&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;2\times3&lt;/script&gt;, which is the same as &lt;script type=&quot;math/tex&quot;&gt;W_3&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now for the weights in &lt;script type=&quot;math/tex&quot;&gt;W_2&lt;/script&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_2} &amp;= (x_3-t)\frac{\partial x_3}{\partial W_2} \\
+&amp;=[(x_3-t)\circ f_3'(W_3x_2)]\frac{\partial (W_3x_2)}{\partial W_2}\\
+&amp;=\delta_3\frac{\partial (W_3x_2)}{\partial W_2}\\
+&amp;=W_3^T\delta_3\frac{\partial x_2}{\partial W_2}\\
+&amp;=[W_3^T\delta_3 \circ f_2'(W_2x_1)]\frac{\partial W_2x_1}{\partial W_2}\\
+&amp;=\delta_2x_1^T\\
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Lets sanity check this too. &lt;script type=&quot;math/tex&quot;&gt;W_2&lt;/script&gt;’s dimensions are &lt;script type=&quot;math/tex&quot;&gt;3 \times 5&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;\delta_3&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;2 \times 1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;W_3&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;2 \times 3&lt;/script&gt;, so &lt;script type=&quot;math/tex&quot;&gt;W_3^T\delta_3&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;3 \times 1&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;f_2'(W_2x_1)&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;3 \times 1&lt;/script&gt;, so &lt;script type=&quot;math/tex&quot;&gt;\delta_2&lt;/script&gt; is also &lt;script type=&quot;math/tex&quot;&gt;3 \times 1&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;5 \times 1&lt;/script&gt;, so &lt;script type=&quot;math/tex&quot;&gt;\delta_2x_1^T&lt;/script&gt; is &lt;script type=&quot;math/tex&quot;&gt;3 \times 5&lt;/script&gt;. So this checks out to be the same.&lt;/p&gt;
+
+&lt;p&gt;Similarly for &lt;script type=&quot;math/tex&quot;&gt;W_1&lt;/script&gt;:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_1} &amp;=[W_2^T\delta_2 \circ f_1'(W_1x_0)]x_0^T\\
+&amp;=\delta_1x_0^T
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;We can observe a recursive pattern emerging in the backpropagation equations. The Forward and Backward passes can be summarized as below:&lt;/p&gt;
+
+&lt;p&gt;The neural network has &lt;script type=&quot;math/tex&quot;&gt;L&lt;/script&gt; layers. &lt;script type=&quot;math/tex&quot;&gt;x_0&lt;/script&gt; is the input vector, &lt;script type=&quot;math/tex&quot;&gt;x_L&lt;/script&gt; is the output vector and &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; is the truth vector. The weight matrices are &lt;script type=&quot;math/tex&quot;&gt;W_1,W_2,..,W_L&lt;/script&gt; and activation functions are &lt;script type=&quot;math/tex&quot;&gt;f_1,f_2,..,f_L&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;Forward Pass:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+x_i &amp;= f_i(W_ix_{i-1})\\
+E&amp;=\|x_L-t\|_2^2
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Backward Pass:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+\delta_L&amp;= (x_L-t)\circ f_L'(W_Lx_{L-1})\\
+\delta_i &amp;= W_{i+1}^T\delta_{i+1}\circ f_i'(W_ix_{i-1})\\
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Weight Update:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_i}&amp;=\delta_ix_{i-1}^T\\
+W_i&amp;=W_i - \alpha_{W_i}\circ \frac{\partial E}{\partial W_i}
+\end{align*} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Equations for Backpropagation, represented using matrices have two advantages.&lt;/p&gt;
+
+&lt;p&gt;One could easily convert these equations to code using either Numpy in Python or Matlab. It is much closer to the way neural networks are implemented in libraries. Using matrix operations speeds up the implementation as one could use high performance matrix primitives from BLAS. GPUs are also suitable for matrix computations as they are suitable for parallelization.&lt;/p&gt;
+
+&lt;p&gt;The matrix version of Backpropagation is intuitive to derive and easy to remember as it avoids the confusing and cluttering derivations involving summations and multiple subscripts.&lt;/p&gt;</content><author><name></name></author><summary type="html">Gradient Descent is one of the most used and popular algorithms to perform an optimization. This blog post aims to provide intuitions regarding gradient descent, its challenges and some of its optimization algorithms.</summary></entry></feed>

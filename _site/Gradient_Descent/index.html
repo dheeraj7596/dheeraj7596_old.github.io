@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gradient Descent and its optimization algorithms – Dheeraj Mekala – Data Scientist at Sprinklr</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Gradient Descent  is one of the most used and popular algorithms to perform an optimization. This blog post aims to provide intuitions regarding gradient descent, its challenges and some of its optimization algorithms.
+
+" />
+    <meta property="og:description" content="Gradient Descent  is one of the most used and popular algorithms to perform an optimization. This blog post aims to provide intuitions regarding gradient descent, its challenges and some of its optimization algorithms.
+
+" />
+    
+    <meta name="author" content="Dheeraj Mekala" />
+
+    
+    <meta property="og:title" content="Gradient Descent and its optimization algorithms" />
+    <meta property="twitter:title" content="Gradient Descent and its optimization algorithms" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="Dheeraj Mekala - Data Scientist at Sprinklr" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">Dheeraj Mekala</a></h1>
+            <p class="site-description">Data Scientist at Sprinklr</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>Gradient Descent and its optimization algorithms</h1>
+
+  <div class="entry">
+    <p><a href="https://en.wikipedia.org/wiki/Gradient_descent">Gradient Descent </a> is one of the most used and popular algorithms to perform an optimization. This blog post aims to provide intuitions regarding gradient descent, its challenges and some of its optimization algorithms.</p>
+
+<p>The basic intuition behind gradient descent can be understood by the following example: Suppose a mountaineer is on the top of a mountain and has to reach the lowest point of the mountain. Assuming he can’t estimate where the path leads to,   what approach should he take to reach the bottom? The best way is to observe the ground and take the path which descends the most. If this path is followed, he will most likely end up at the lowest point. Graphically:
+<img src="https://raw.githubusercontent.com/dheeraj7596/dheeraj7596.github.io/master/images/gradient_descent.png" alt="Gradient Descent" /></p>
+
+<p>In mathematical terms, gradient descent is a way to minimise an objective function <script type="math/tex">R(x)</script></p>
+
+<script type="math/tex; mode=display">J(\theta)</script>
+
+<p>, where \theta are model’s parameters.
+Any layer of a neural network can be considered as an Affine Transformation followed by application of a non linear function. A vector is received as input and is multiplied with a matrix to produce an output , to which a bias vector may be added before passing the result through an activation function such as sigmoid.</p>
+
+<script type="math/tex; mode=display">Input = x \quad Output = f(Wx+b)</script>
+
+<p>Consider a neural network with a single hidden layer like this one. It has no bias units. We derive forward and backward pass equations in their matrix form.
+<img src="https://raw.githubusercontent.com/sudeepraja/sudeepraja.github.io/master/images/neuron.PNG" alt="Neural Network" /></p>
+
+<p>The forward propagation equations are as follows:</p>
+
+<script type="math/tex; mode=display">\mbox{Input} = x_0\\
+\mbox{Hidden Layer1 output} = x_1 = f_1(W_1x_0)\\
+\mbox{Hidden Layer2 output} = x_2 = f_2(W_2x_1)\\
+\mbox{Output} = x_3 = f_3(W_3x_2)</script>
+
+<p>To train this neural network, you could either use Batch gradient descent or <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">Stochastic gradient descent</a>. Stochastic gradient descent uses a single instance of data to perform weight updates, whereas the Batch gradient descent uses a a complete batch of data.</p>
+
+<p>For simplicity lets assume this is a multiple regression problem.</p>
+
+<p>Stochastic update loss function: <script type="math/tex">E=\frac{1}{2}\|z-t\|_2^2</script></p>
+
+<p>Batch update loss function: <script type="math/tex">E=\frac{1}{2}\sum_{i\in Batch}\|z_i-t_i\|_2^2</script></p>
+
+<p>Here <script type="math/tex">t</script> is the ground truth for that instance.</p>
+
+<p>We will only consider the stochastic update loss function. All the results hold for the batch version as well.</p>
+
+<p>Let us look at the loss function from a different perspective. Given an input <script type="math/tex">x_0</script>,  output <script type="math/tex">x_3</script> is determined by <script type="math/tex">W_1,W_2</script> and <script type="math/tex">W_3</script>. So the only tuneable parameters in <script type="math/tex">E</script> are <script type="math/tex">W_1,W_2</script> and <script type="math/tex">W_3</script>. To reduce the value of the error function, we have to change these weights in the negative direction of the gradient of the loss function with respect to these weights.</p>
+
+<script type="math/tex; mode=display">w = w - \alpha_w \frac{\partial E}{\partial w} \quad \quad \mbox{for all the weights } w</script>
+
+<p>Here <script type="math/tex">\alpha_w</script> is a scalar for this particular weight, called the learning rate. Its value is decided by the optimization technique used. I highly recommend reading <a href="https://sebastianruder.com/optimizing-gradient-descent/">An overview of gradient descent optimization algorithms</a> for more information about various gradient decent techniques and learning rates.</p>
+
+<p>Backpropagation equations can be derived by repeatedly applying the chain rule. First we derive these for the weights in <script type="math/tex">W_3</script>:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_3} &= (x_3-t)\frac{\partial x_3}{\partial W_3} \\
+&=[(x_3-t)\circ f_3'(W_3x_2)]\frac{\partial W_3x_2}{\partial W_3}\\
+&=[(x_3-t)\circ f_3'(W_3x_2)]x_2^T\\
+\mbox{Let }\delta_3 &= (x_3-t)\circ f_3'(W_3x_2)\\
+\frac{\partial E}{\partial W_3} &=\delta_3x_2^T
+\end{align*} %]]></script>
+
+<p>Here <script type="math/tex">\circ</script> is the Hadamard product. Lets sanity check this by looking at the dimensionalities. <script type="math/tex">\frac{\partial E}{\partial W_3}</script> must have the same dimensions as <script type="math/tex">W_3</script>. <script type="math/tex">W_3</script>’s dimensions are <script type="math/tex">2 \times 3</script>. Dimensions of <script type="math/tex">(x_3-t)</script> is <script type="math/tex">2 \times 1</script> and <script type="math/tex">f_3'(W_3x_2)</script> is also <script type="math/tex">2 \times 1</script>, so <script type="math/tex">\delta_3</script> is also <script type="math/tex">2 \times 1</script>. <script type="math/tex">x_2</script> is <script type="math/tex">3 \times 1</script>, so dimensions of <script type="math/tex">\delta_3x_2^T</script> is <script type="math/tex">2\times3</script>, which is the same as <script type="math/tex">W_3</script>.</p>
+
+<p>Now for the weights in <script type="math/tex">W_2</script>:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_2} &= (x_3-t)\frac{\partial x_3}{\partial W_2} \\
+&=[(x_3-t)\circ f_3'(W_3x_2)]\frac{\partial (W_3x_2)}{\partial W_2}\\
+&=\delta_3\frac{\partial (W_3x_2)}{\partial W_2}\\
+&=W_3^T\delta_3\frac{\partial x_2}{\partial W_2}\\
+&=[W_3^T\delta_3 \circ f_2'(W_2x_1)]\frac{\partial W_2x_1}{\partial W_2}\\
+&=\delta_2x_1^T\\
+\end{align*} %]]></script>
+
+<p>Lets sanity check this too. <script type="math/tex">W_2</script>’s dimensions are <script type="math/tex">3 \times 5</script>. <script type="math/tex">\delta_3</script> is <script type="math/tex">2 \times 1</script> and <script type="math/tex">W_3</script> is <script type="math/tex">2 \times 3</script>, so <script type="math/tex">W_3^T\delta_3</script> is <script type="math/tex">3 \times 1</script>. <script type="math/tex">f_2'(W_2x_1)</script> is <script type="math/tex">3 \times 1</script>, so <script type="math/tex">\delta_2</script> is also <script type="math/tex">3 \times 1</script>. <script type="math/tex">x_1</script> is <script type="math/tex">5 \times 1</script>, so <script type="math/tex">\delta_2x_1^T</script> is <script type="math/tex">3 \times 5</script>. So this checks out to be the same.</p>
+
+<p>Similarly for <script type="math/tex">W_1</script>:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_1} &=[W_2^T\delta_2 \circ f_1'(W_1x_0)]x_0^T\\
+&=\delta_1x_0^T
+\end{align*} %]]></script>
+
+<p>We can observe a recursive pattern emerging in the backpropagation equations. The Forward and Backward passes can be summarized as below:</p>
+
+<p>The neural network has <script type="math/tex">L</script> layers. <script type="math/tex">x_0</script> is the input vector, <script type="math/tex">x_L</script> is the output vector and <script type="math/tex">t</script> is the truth vector. The weight matrices are <script type="math/tex">W_1,W_2,..,W_L</script> and activation functions are <script type="math/tex">f_1,f_2,..,f_L</script>.</p>
+
+<p>Forward Pass:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+x_i &= f_i(W_ix_{i-1})\\
+E&=\|x_L-t\|_2^2
+\end{align*} %]]></script>
+
+<p>Backward Pass:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\delta_L&= (x_L-t)\circ f_L'(W_Lx_{L-1})\\
+\delta_i &= W_{i+1}^T\delta_{i+1}\circ f_i'(W_ix_{i-1})\\
+\end{align*} %]]></script>
+
+<p>Weight Update:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\frac{\partial E}{\partial W_i}&=\delta_ix_{i-1}^T\\
+W_i&=W_i - \alpha_{W_i}\circ \frac{\partial E}{\partial W_i}
+\end{align*} %]]></script>
+
+<p>Equations for Backpropagation, represented using matrices have two advantages.</p>
+
+<p>One could easily convert these equations to code using either Numpy in Python or Matlab. It is much closer to the way neural networks are implemented in libraries. Using matrix operations speeds up the implementation as one could use high performance matrix primitives from BLAS. GPUs are also suitable for matrix computations as they are suitable for parallelization.</p>
+
+<p>The matrix version of Backpropagation is intuitive to derive and easy to remember as it avoids the confusing and cluttering derivations involving summations and multiple subscripts.</p>
+
+  </div>
+
+  <div class="date">
+    Written on June 10, 2018
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          
+<a href="mailto:dheeraj7596.dm@gmail.com"><i class="svg-icon email"></i></a>
+<a href="https://www.facebook.com/dheeraj7596"><i class="svg-icon facebook"></i></a>
+
+<a href="https://github.com/dheeraj7596"><i class="svg-icon github"></i></a>
+
+<a href="https://www.linkedin.com/in/dheeraj-mekala-310a08151"><i class="svg-icon linkedin"></i></a>
+
+
+
+
+
+
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>
