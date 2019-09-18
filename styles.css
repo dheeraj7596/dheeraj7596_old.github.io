@@ -987,7 +987,7 @@ article .article-metadata {
 }
 
 .pub-list-item .pub-publication {
-  color: #090;
+  color: rgba(0,153,0,1);
   font-size: 0.9rem;
 }
 
